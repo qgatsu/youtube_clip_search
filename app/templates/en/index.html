@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>切り抜き検索くん</title>
+    <title>Clip Finder</title>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   </head>
   <body class="landing">
     <header class="site-header">
-      <a class="logo" href="{{ url_for('main.index') }}">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="切り抜き検索くん ロゴ" />
-        <span class="brand">切り抜き検索くん</span>
+      <a class="logo" href="{{ url_for('main.en_index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clip Finder logo" />
+        <span class="brand">Clip Finder</span>
       </a>
       <nav class="site-nav">
-        <a href="{{ url_for('main.en_index') }}">English</a>
-        <a href="#hero">トップ</a>
-        <a href="#results-panel">検索結果</a>
+        <a href="{{ url_for('main.index') }}">日本語</a>
+        <a href="#hero">Top</a>
+        <a href="#results-panel">Results</a>
       </nav>
     </header>
 
@@ -24,18 +24,24 @@
       <section class="hero" id="hero">
         <div class="hero-content">
           <p class="lead">
-            配信アーカイブのリンクから切り抜き動画を検索し、再生数順・投稿日順などで素早く確認できます。
+            Paste a YouTube archive URL to find related clip videos, sortable by views, publish date, or duration.
           </p>
           <section class="panel">
             <form id="search-form">
-              <label for="archive-url">配信アーカイブ URL</label>
+              <label for="archive-url">Original video URL</label>
               <div class="input-row">
-                <input type="url" id="archive-url" name="url" placeholder="https://www.youtube.com/watch?v=..." required />
-                <button type="submit" class="button-primary">検索</button>
+                <input
+                  type="url"
+                  id="archive-url"
+                  name="url"
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  required
+                />
+                <button type="submit" class="button-primary">Search</button>
               </div>
             </form>
             <aside class="origin-preview" id="origin-preview" aria-live="polite">
-              <p class="placeholder-text">検索すると元動画の情報が表示されます。</p>
+              <p class="placeholder-text">Original video info will appear after search.</p>
             </aside>
           </section>
         </div>
@@ -45,20 +51,20 @@
         <div class="results-panel">
           <div class="results-controls">
             <div class="sort-row">
-              <label for="sort-select">並び替え</label>
+              <label for="sort-select">Sort by</label>
               <select id="sort-select" name="sort">
-                <option value="views">再生数</option>
-                <option value="date">投稿日</option>
-                <option value="duration">動画の長さ</option>
+                <option value="views">Views</option>
+                <option value="date">Published date</option>
+                <option value="duration">Duration</option>
               </select>
-              <button type="button" id="order-toggle" data-order="desc" class="chip">降順</button>
+              <button type="button" id="order-toggle" data-order="desc" class="chip">Desc</button>
             </div>
           </div>
           <div class="result-tabs" id="result-tabs">
-            <button type="button" class="tab active" data-tab="videos">動画</button>
+            <button type="button" class="tab active" data-tab="videos">Videos</button>
             <button type="button" class="tab" data-tab="shorts">Shorts</button>
-            <button type="button" class="tab" data-tab="favorites" aria-label="お気に入り">
-              ♡ お気に入り
+            <button type="button" class="tab" data-tab="favorites" aria-label="Favorites">
+              ♡ Favorites
             </button>
           </div>
           <div class="result-status" id="result-status" aria-live="polite"></div>
@@ -69,21 +75,20 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <p class="footer-links">
-          <a href="{{ url_for('main.about') }}">このサイトについて</a> |
-          <a href="{{ url_for('main.terms') }}">利用規約</a> |
-          <a href="{{ url_for('main.privacy') }}">プライバシーポリシー</a>
+          <a href="{{ url_for('main.en_about') }}">About</a> |
+          <a href="{{ url_for('main.en_terms') }}">Terms</a> |
+          <a href="{{ url_for('main.en_privacy') }}">Privacy</a>
         </p>
         <p class="footer-note">
-          本サービスは YouTube Data API Services を利用しています。<br />
           This service uses YouTube Data API Services.
         </p>
         <p class="footer-note">
           <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
-            YouTube 利用規約
+            YouTube Terms of Service
           </a>
           /
           <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-            Google プライバシーポリシー
+            Google Privacy Policy
           </a>
         </p>
       </div>

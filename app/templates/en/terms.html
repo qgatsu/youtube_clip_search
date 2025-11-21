@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Terms of Service - Clip Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <a class="logo" href="{{ url_for('main.en_index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clip Finder logo" />
+        <span class="brand">Clip Finder</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('main.index') }}">日本語</a>
+        <a href="{{ url_for('main.en_about') }}">About</a>
+        <a href="{{ url_for('main.en_privacy') }}">Privacy</a>
+      </nav>
+    </header>
+    <main class="page-main">
+      <section class="page-hero">
+        <p class="eyebrow">Terms</p>
+        <h1>Terms of Service</h1>
+        <p class="lead">
+          Please review these terms before using Clip Finder. By using the service, you agree to them.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>1. Service description</h2>
+        <p>
+          Clip Finder lets you paste a YouTube archive (original video) URL and lists public videos
+          that appear to be clips of that source. All video viewing happens on YouTube; we do not download
+          or re-distribute video files.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>2. Prohibited actions</h2>
+        <p>Users must not:</p>
+        <ul>
+          <li>Violate laws or public order</li>
+          <li>Break YouTube Terms of Service</li>
+          <li>Interfere with service operations</li>
+          <li>Impose excessive load through abusive access or scraping</li>
+        </ul>
+      </section>
+
+      <section class="page-card">
+        <h2>3. Disclaimer</h2>
+        <p>
+          Results are based on public YouTube data and may not be complete or accurate. The service is
+          provided “as is”; we are not liable for any damages resulting from its use.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>4. YouTube / Google terms</h2>
+        <p>
+          This service uses YouTube Data API Services. By using it, you also agree to the
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube Terms of Service
+          </a>
+          and the
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google Privacy Policy
+          </a>.
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-links">
+          <a href="{{ url_for('main.en_about') }}">About</a> |
+          <a href="{{ url_for('main.en_terms') }}">Terms</a> |
+          <a href="{{ url_for('main.en_privacy') }}">Privacy</a>
+        </p>
+        <p class="footer-note">
+          This service uses YouTube Data API Services.
+        </p>
+        <p class="footer-note">
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube Terms of Service
+          </a>
+          /
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google Privacy Policy
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

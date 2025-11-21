@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>プライバシーポリシー - 切り抜き検索くん</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <a class="logo" href="{{ url_for('main.index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="切り抜き検索くん ロゴ" />
+        <span class="brand">切り抜き検索くん</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('main.index') }}">トップ</a>
+        <a href="{{ url_for('main.about') }}">このサイトについて</a>
+        <a href="{{ url_for('main.terms') }}">利用規約</a>
+        <a href="{{ url_for('main.en_index') }}">English</a>
+      </nav>
+    </header>
+    <main class="page-main">
+      <section class="page-hero">
+        <p class="eyebrow">Privacy</p>
+        <h1>プライバシーポリシー</h1>
+        <p class="lead">
+          切り抜き検索くん で取り扱う情報と、その利用目的についてまとめています。
+          重要なポイントを簡潔に記載していますのでご確認ください。
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>1. 取得する情報</h2>
+        <p>本サービスは、以下の情報を取得・利用する場合があります。</p>
+        <ul>
+          <li>ユーザーが入力した元動画の URL およびそこから取得される動画 ID</li>
+          <li>YouTube Data API Services を通じて取得する公開動画のメタデータ（タイトル、チャンネル名、公開日時、サムネイル等）</li>
+          <li>元動画と切り抜き候補動画の動画 ID、検索日時などのログ情報</li>
+          <li>アクセスログ（IP アドレス、ブラウザ情報等）</li>
+        </ul>
+      </section>
+
+      <section class="page-card">
+        <h2>2. 利用目的</h2>
+        <p>取得した情報は、以下の目的で利用します。</p>
+        <ul>
+          <li>元動画に関連する切り抜き動画を検索・表示するため</li>
+          <li>本サービスの品質向上・不具合対応等のための統計的な分析のため</li>
+        </ul>
+      </section>
+
+      <section class="page-card">
+        <h2>3. 保存期間</h2>
+        <p>
+          動画 ID や検索日時等のログは、サービス運営および分析のために合理的な期間（目安として3ヶ月程度）保存し、その後削除または匿名化します。
+          必要に応じてこの期間は変更される場合があります。
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>4. YouTube / Google に関する事項</h2>
+        <p>
+          本サービスは、YouTube Data API Services を利用して YouTube 上の公開データのみを取得します。
+          本サービスの利用には
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube 利用規約
+          </a>
+          および
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google プライバシーポリシー
+          </a>
+          が適用されます。
+        </p>
+        <p>本サービスは、ユーザーの Google アカウント情報や非公開データにはアクセスしません。</p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-links">
+          <a href="{{ url_for('main.about') }}">このサイトについて</a> |
+          <a href="{{ url_for('main.terms') }}">利用規約</a> |
+          <a href="{{ url_for('main.privacy') }}">プライバシーポリシー</a>
+        </p>
+        <p class="footer-note">
+          本サービスは YouTube Data API Services を利用しています。<br />
+          This service uses YouTube Data API Services.
+        </p>
+        <p class="footer-note">
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube 利用規約
+          </a>
+          /
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google プライバシーポリシー
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>About - Clip Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <a class="logo" href="{{ url_for('main.en_index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clip Finder logo" />
+        <span class="brand">Clip Finder</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('main.index') }}">日本語</a>
+        <a href="{{ url_for('main.en_terms') }}">Terms</a>
+        <a href="{{ url_for('main.en_privacy') }}">Privacy</a>
+      </nav>
+    </header>
+    <main class="page-main">
+      <section class="page-hero">
+        <p class="eyebrow">About</p>
+        <h1>About Clip Finder</h1>
+        <p class="lead">
+          Paste the URL of an original YouTube stream and quickly find related clip videos.
+          We never download or re-host video files; everything is watched on YouTube.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>How it works</h2>
+        <p>
+          We take the original video URL or ID and query the YouTube Data API to search public video
+          titles and descriptions. Videos that mention the original URL are shown as clip candidates.
+        </p>
+        <p>
+          Results can be sorted by views, publish date, or duration, and you can mark favorites to
+          keep track of interesting clips.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>Notes</h2>
+        <p>
+          Clip Finder uses the YouTube Data API Services and only accesses public data. We do not
+          access your Google account information or private content.
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-links">
+          <a href="{{ url_for('main.en_about') }}">About</a> |
+          <a href="{{ url_for('main.en_terms') }}">Terms</a> |
+          <a href="{{ url_for('main.en_privacy') }}">Privacy</a>
+        </p>
+        <p class="footer-note">
+          This service uses YouTube Data API Services.
+        </p>
+        <p class="footer-note">
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube Terms of Service
+          </a>
+          /
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google Privacy Policy
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

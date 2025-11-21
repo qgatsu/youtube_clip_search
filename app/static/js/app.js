@@ -7,12 +7,64 @@ const tabButtons = document.querySelectorAll("[data-tab]");
 const originPreview = document.getElementById("origin-preview");
 const resultStatus = document.getElementById("result-status");
 const FAVORITES_KEY = "cliptubeFavorites";
+const locale = document.documentElement.lang === "en" ? "en" : "ja";
+const TEXT = {
+  ja: {
+    orderDesc: "降順",
+    orderAsc: "昇順",
+    urlRequired: "URL を入力してください",
+    searchFailed: "検索に失敗しました",
+    fetching: "検索中...",
+    fetchingOrigin: "元動画を取得しています...",
+    placeholderOrigin: "検索すると元動画の情報が表示されます。",
+    hit: (count) => `${count} 件ヒット`,
+    noResults: "該当する結果はありません。",
+    favoritesUpdate: "お気に入りを更新しました",
+    favoritesEmpty: "お気に入りはまだありません。",
+    favoritesCount: (count) => `お気に入り ${count} 件`,
+    emptyVideos: "動画",
+    emptyShorts: "Shorts",
+    emptyFavorites: "お気に入り",
+    metaViews: "再生",
+    metaDuration: "長さ",
+    metaPublished: "投稿日",
+    titleMissing: "(タイトルなし)",
+    favoriteAria: "お気に入りに追加",
+  },
+  en: {
+    orderDesc: "Desc",
+    orderAsc: "Asc",
+    urlRequired: "Please enter a URL",
+    searchFailed: "Search failed",
+    fetching: "Searching...",
+    fetchingOrigin: "Fetching original...",
+    placeholderOrigin: "Original video info will appear after search.",
+    hit: (count) => `${count} results`,
+    noResults: "No results found.",
+    favoritesUpdate: "Favorites updated",
+    favoritesEmpty: "No favorites yet.",
+    favoritesCount: (count) => `Favorites ${count}`,
+    emptyVideos: "Videos",
+    emptyShorts: "Shorts",
+    emptyFavorites: "Favorites",
+    metaViews: "Views",
+    metaDuration: "Duration",
+    metaPublished: "Published",
+    titleMissing: "(No title)",
+    favoriteAria: "Add to favorites",
+  },
+};
+const t = TEXT[locale];
 
 let currentItems = [];
 let currentTab = "videos";
 let currentOriginal = null;
 let renderedItemsMap = new Map();
 let favorites = loadFavorites();
+
+if (orderToggle) {
+  orderToggle.textContent = t.orderDesc;
+}
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -26,7 +78,7 @@ sortSelect.addEventListener("change", () => {
 orderToggle.addEventListener("click", () => {
   const next = orderToggle.dataset.order === "desc" ? "asc" : "desc";
   orderToggle.dataset.order = next;
-  orderToggle.textContent = next === "desc" ? "降順" : "昇順";
+  orderToggle.textContent = next === "desc" ? t.orderDesc : t.orderAsc;
   renderSortedResults();
 });
 
@@ -52,7 +104,7 @@ resultsEl.addEventListener("click", (event) => {
     delete favorites[itemId];
     saveFavorites();
     if (currentTab === "favorites") {
-      resultStatus.textContent = "お気に入りを更新しました";
+      resultStatus.textContent = t.favoritesUpdate;
     }
     renderSortedResults();
     return;
@@ -69,7 +121,7 @@ resultsEl.addEventListener("click", (event) => {
 async function runSearch() {
   const url = urlInput.value.trim();
   if (!url) {
-    resultStatus.textContent = "URL を入力してください";
+    resultStatus.textContent = t.urlRequired;
     return;
   }
 
@@ -80,14 +132,13 @@ async function runSearch() {
     const response = await fetch(`/api/search?${params.toString()}`);
     if (!response.ok) {
       const payload = await response.json().catch(() => ({}));
-      throw new Error(payload.error || "検索に失敗しました");
+      throw new Error(payload.error || t.searchFailed);
     }
     const data = await response.json();
     currentItems = data.items || [];
     currentOriginal = data.original || null;
     renderOriginalPreview();
-    resultStatus.textContent =
-      data.count && data.count > 0 ? `${data.count} 件ヒット` : "該当する結果はありません。";
+    resultStatus.textContent = data.count && data.count > 0 ? t.hit(data.count) : t.noResults;
     renderSortedResults();
   } catch (error) {
     currentOriginal = null;
@@ -111,9 +162,7 @@ function renderSortedResults() {
   }
   const sorted = [...working].sort((a, b) => compareItems(a, b, sort, order));
   if (currentTab === "favorites") {
-    resultStatus.textContent = sorted.length
-      ? `お気に入り ${sorted.length} 件`
-      : "お気に入りはまだありません。";
+    resultStatus.textContent = sorted.length ? t.favoritesCount(sorted.length) : t.favoritesEmpty;
   }
   renderResults(sorted);
 }
@@ -136,11 +185,11 @@ function renderResults(items) {
   if (!items.length) {
     const emptyLabel =
       currentTab === "shorts"
-        ? "Shorts"
+        ? t.emptyShorts
         : currentTab === "favorites"
-        ? "お気に入り"
-        : "動画";
-    resultsEl.innerHTML = `<p>${emptyLabel} の結果はありません。</p>`;
+        ? t.emptyFavorites
+        : t.emptyVideos;
+    resultsEl.innerHTML = `<p>${emptyLabel} ${t.noResults}</p>`;
     return;
   }
 
@@ -153,7 +202,7 @@ function renderResults(items) {
       const duration = item.durationText || "-";
       const description = item.descriptionSnippet || "";
       const thumbnail = item.thumbnailUrl || "";
-      const title = escapeHtml(item.title || "(タイトルなし)");
+      const title = escapeHtml(item.title || t.titleMissing);
       const channel = escapeHtml(item.channelTitle || "");
       const favorite = Boolean(favorites[itemId]);
       const favoriteLabel = favorite ? "♥" : "♡";
@@ -166,9 +215,9 @@ function renderResults(items) {
               <h3>${title}</h3>
               <div class="result-meta">
                 <span>${channel}</span>
-                <span>再生 ${viewText}</span>
-                <span>長さ ${duration}</span>
-                <span>投稿日 ${published}</span>
+                <span>${t.metaViews} ${viewText}</span>
+                <span>${t.metaDuration} ${duration}</span>
+                <span>${t.metaPublished} ${published}</span>
               </div>
               <p class="description-snippet">${escapeHtml(description)}</p>
             </div>
@@ -178,7 +227,7 @@ function renderResults(items) {
             class="favorite-button"
             data-id="${safeItemId}"
             aria-pressed="${favorite}"
-            aria-label="お気に入りに追加"
+            aria-label="${t.favoriteAria}"
           >
             ${favoriteLabel}
           </button>
@@ -199,8 +248,8 @@ function setLoading(isLoading) {
     el.disabled = isLoading;
   });
   if (isLoading) {
-    resultStatus.textContent = "検索中...";
-    showOriginPlaceholder("元動画を取得しています...");
+    resultStatus.textContent = t.fetching;
+    showOriginPlaceholder(t.fetchingOrigin);
   }
 }
 
@@ -217,7 +266,7 @@ function renderOriginalPreview() {
     return;
   }
   if (!currentOriginal) {
-    showOriginPlaceholder("検索すると元動画の情報が表示されます。");
+    showOriginPlaceholder(t.placeholderOrigin);
     return;
   }
   originPreview.classList.add("has-content");
@@ -228,19 +277,20 @@ function renderOriginalPreview() {
     currentOriginal.viewCount?.toLocaleString?.() ?? currentOriginal.viewCount ?? 0;
   const duration = currentOriginal.durationText || "-";
   const thumbnail = currentOriginal.thumbnailUrl;
-  const title = escapeHtml(currentOriginal.title || "(タイトルなし)");
+  const title = escapeHtml(currentOriginal.title || t.titleMissing);
+  const altText = currentOriginal.title || (locale === "en" ? "original video" : "元動画");
   originPreview.innerHTML = `
     <a class="origin-link" href="${currentOriginal.url}" target="_blank" rel="noopener">
       ${
         thumbnail
-          ? `<img src="${thumbnail}" alt="${currentOriginal.title || "元動画"}" />`
+          ? `<img src="${thumbnail}" alt="${altText}" />`
           : ""
       }
       <div class="origin-meta">
         <span class="origin-title">${title}</span>
         <span>${escapeHtml(currentOriginal.channelTitle || "")}</span>
-        <span>投稿日 ${published}</span>
-        <span>再生 ${viewText} / 長さ ${duration}</span>
+        <span>${t.metaPublished} ${published}</span>
+        <span>${t.metaViews} ${viewText} / ${t.metaDuration} ${duration}</span>
       </div>
     </a>
   `;

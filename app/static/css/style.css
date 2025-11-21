@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-  --bg: #f9fafb;
-  --text: #111827;
+  --bg: #f7f7fb;
+  --text: #0f172a;
   --muted: #6b7280;
   --border: #e5e7eb;
   --card: #ffffff;
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
+  --primary-soft: #e5edff;
   --accent: linear-gradient(120deg, #2563eb, #7c3aed);
   font-family: "Inter", "Hiragino Sans", sans-serif;
 }
@@ -20,7 +21,7 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #eef2ff, var(--bg) 55%);
+  background: radial-gradient(circle at 20% 20%, #e9edff, var(--bg) 55%);
   color: var(--text);
   min-height: 100vh;
 }
@@ -31,9 +32,9 @@ a {
 }
 
 .landing main {
-  max-width: 1100px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 96px 24px 80px;
+  padding: 104px 24px 96px;
 }
 
 .site-header {
@@ -41,8 +42,8 @@ a {
   top: 0;
   width: 100%;
   backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.85);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,6 +57,10 @@ a {
   gap: 12px;
   font-weight: 700;
   font-size: 1.1rem;
+}
+
+.logo .brand {
+  color: var(--text);
 }
 
 .site-nav {
@@ -73,6 +78,18 @@ a {
   color: var(--primary);
 }
 
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 .hero {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -85,6 +102,12 @@ a {
   width: 32px;
   height: 32px;
   object-fit: contain;
+}
+
+.logo span {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .hero-content h1 {
@@ -109,10 +132,10 @@ a {
 
 .panel {
   background: rgba(255, 255, 255, 0.95);
-  padding: 24px;
-  border-radius: 16px;
+  padding: 28px;
+  border-radius: 18px;
   border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
 }
 
 #search-form label {
@@ -389,6 +412,73 @@ select:focus-visible,
   opacity: 0.85;
 }
 
+.page {
+  background: radial-gradient(circle at 15% 10%, #e7ecff, var(--bg) 55%);
+  min-height: 100vh;
+}
+
+.page-main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.page-hero {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+}
+
+.page-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+}
+
+.page-card h2 {
+  margin-top: 0;
+}
+
+.page-card ul {
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(229, 231, 235, 0.8);
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.site-footer .footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.site-footer .footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer .footer-links a:hover {
+  text-decoration: underline;
+}
+
+.site-footer .footer-note {
+  margin: 0.3rem 0;
+}
+
 @media (max-width: 720px) {
   .site-header {
     flex-direction: column;
@@ -425,5 +515,14 @@ select:focus-visible,
 
   .results {
     grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    padding: 1.25rem 1rem 1.75rem;
+    font-size: 0.85rem;
+  }
+
+  .page-main {
+    padding-top: 96px;
   }
 }

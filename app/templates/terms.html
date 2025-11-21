@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>利用規約 - 切り抜き検索くん</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <a class="logo" href="{{ url_for('main.index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="切り抜き検索くん ロゴ" />
+        <span class="brand">切り抜き検索くん</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('main.index') }}">トップ</a>
+        <a href="{{ url_for('main.about') }}">このサイトについて</a>
+        <a href="{{ url_for('main.privacy') }}">プライバシー</a>
+        <a href="{{ url_for('main.en_index') }}">English</a>
+      </nav>
+    </header>
+    <main class="page-main">
+      <section class="page-hero">
+        <p class="eyebrow">Terms</p>
+        <h1>利用規約</h1>
+        <p class="lead">
+          切り抜き検索くん のご利用にあたり、遵守いただきたい内容をまとめています。
+          サービスを使う前に一度ご確認ください。
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>第1条（本サービスの内容）</h2>
+        <p>
+          本サービスは、ユーザーが入力した YouTube の配信アーカイブ（元動画）の URL をもとに、
+          当該動画を元にした切り抜き動画と思われる公開動画を検索し、一覧表示するサービスです。
+        </p>
+        <p>
+          本サービスは YouTube Data API Services を利用して動画情報を取得しますが、
+          動画ファイル自体のダウンロードや再配信は行いません。
+          すべての動画視聴は YouTube 上で行われます。
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>第2条（禁止事項）</h2>
+        <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
+        <ul>
+          <li>法令または公序良俗に違反する行為</li>
+          <li>YouTube 利用規約に違反する行為</li>
+          <li>本サービスの運営を妨害する行為</li>
+          <li>不正アクセス、スクレイピング 等によりシステムに過度な負荷を与える行為</li>
+        </ul>
+      </section>
+
+      <section class="page-card">
+        <h2>第3条（免責事項）</h2>
+        <p>
+          本サービスは、YouTube 上の公開情報をもとに結果を表示していますが、
+          検索結果の正確性や完全性を保証するものではありません。
+          また、本サービスの利用によりユーザーに生じた損害について、一切の責任を負いません。
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>第4条（YouTube 利用規約等）</h2>
+        <p>
+          本サービスは YouTube Data API Services を利用しています。
+          ユーザーは本サービスを利用することにより、
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube 利用規約
+          </a>
+          および
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google プライバシーポリシー
+          </a>
+          にも拘束されることに同意するものとします。
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-links">
+          <a href="{{ url_for('main.about') }}">このサイトについて</a> |
+          <a href="{{ url_for('main.terms') }}">利用規約</a> |
+          <a href="{{ url_for('main.privacy') }}">プライバシーポリシー</a>
+        </p>
+        <p class="footer-note">
+          本サービスは YouTube Data API Services を利用しています。<br />
+          This service uses YouTube Data API Services.
+        </p>
+        <p class="footer-note">
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube 利用規約
+          </a>
+          /
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google プライバシーポリシー
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

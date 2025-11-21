@@ -18,10 +18,41 @@ SORTERS = {
 def register_routes(app: Flask) -> None:
     bp = Blueprint("main", __name__)
 
+    # ---- ページ系 ----
     @bp.get("/")
     def index():
         return render_template("index.html")
 
+    @bp.get("/about")
+    def about():
+        return render_template("about.html")
+
+    @bp.get("/terms")
+    def terms():
+        return render_template("terms.html")
+
+    @bp.get("/privacy")
+    def privacy():
+        return render_template("privacy.html")
+
+    # ---- English pages ----
+    @bp.get("/en/")
+    def en_index():
+        return render_template("en/index.html")
+
+    @bp.get("/en/about")
+    def en_about():
+        return render_template("en/about.html")
+
+    @bp.get("/en/terms")
+    def en_terms():
+        return render_template("en/terms.html")
+
+    @bp.get("/en/privacy")
+    def en_privacy():
+        return render_template("en/privacy.html")
+
+    # ---- API ----
     @bp.get("/api/search")
     def search():
         archive_url = (request.args.get("url") or "").strip()
@@ -46,13 +77,15 @@ def register_routes(app: Flask) -> None:
         items = payload.get("items", [])
         original = payload.get("original")
         sorted_items = _sort_results(items, sort_by, order)
-        return jsonify({
-            "items": sorted_items,
-            "count": len(sorted_items),
-            "sort": sort_by,
-            "order": order,
-            "original": original,
-        })
+        return jsonify(
+            {
+                "items": sorted_items,
+                "count": len(sorted_items),
+                "sort": sort_by,
+                "order": order,
+                "original": original,
+            }
+        )
 
     app.register_blueprint(bp)
 

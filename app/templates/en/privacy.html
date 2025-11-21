@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Privacy Policy - Clip Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <a class="logo" href="{{ url_for('main.en_index') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clip Finder logo" />
+        <span class="brand">Clip Finder</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('main.index') }}">日本語</a>
+        <a href="{{ url_for('main.en_about') }}">About</a>
+        <a href="{{ url_for('main.en_terms') }}">Terms</a>
+      </nav>
+    </header>
+    <main class="page-main">
+      <section class="page-hero">
+        <p class="eyebrow">Privacy</p>
+        <h1>Privacy Policy</h1>
+        <p class="lead">
+          This page explains what information Clip Finder handles and how we use it.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>1. Information we collect</h2>
+        <p>We may collect and use the following:</p>
+        <ul>
+          <li>The original video URL you input and the derived video ID</li>
+          <li>Public video metadata from YouTube Data API Services (title, channel, publish date, thumbnails, etc.)</li>
+          <li>Original and clip-candidate video IDs, search timestamps, and related logs</li>
+          <li>Access logs (IP address, browser information, etc.)</li>
+        </ul>
+      </section>
+
+      <section class="page-card">
+        <h2>2. Purpose of use</h2>
+        <p>Collected information is used to:</p>
+        <ul>
+          <li>Search and display clip videos related to the original video</li>
+          <li>Analyze usage for quality improvement and troubleshooting</li>
+        </ul>
+      </section>
+
+      <section class="page-card">
+        <h2>3. Retention</h2>
+        <p>
+          Logs such as video IDs and search timestamps are stored for a reasonable period (around three months) for
+          operations and analysis, then deleted or anonymized. The period may change as needed.
+        </p>
+      </section>
+
+      <section class="page-card">
+        <h2>4. About YouTube / Google</h2>
+        <p>
+          Kirinuki Search uses YouTube Data API Services and only accesses public data on YouTube. The
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">YouTube Terms of Service</a>
+          and the
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>
+          apply.
+        </p>
+        <p>We do not access your Google account information or private data.</p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-links">
+          <a href="{{ url_for('main.en_about') }}">About</a> |
+          <a href="{{ url_for('main.en_terms') }}">Terms</a> |
+          <a href="{{ url_for('main.en_privacy') }}">Privacy</a>
+        </p>
+        <p class="footer-note">
+          This service uses YouTube Data API Services.
+        </p>
+        <p class="footer-note">
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">
+            YouTube Terms of Service
+          </a>
+          /
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Google Privacy Policy
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
