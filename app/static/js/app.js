@@ -30,6 +30,7 @@ const TEXT = {
     metaPublished: "投稿日",
     titleMissing: "(タイトルなし)",
     favoriteAria: "お気に入りに追加",
+    openInApp: "YouTubeアプリで開く",
   },
   en: {
     orderDesc: "Desc",
@@ -52,6 +53,7 @@ const TEXT = {
     metaPublished: "Published",
     titleMissing: "(No title)",
     favoriteAria: "Add to favorites",
+    openInApp: "Open in YouTube app",
   },
 };
 const t = TEXT[locale];
@@ -230,7 +232,12 @@ function renderResults(items) {
             aria-label="${t.favoriteAria}"
           >
             ${favoriteLabel}
-          </button>
+         </button>
+          <div class="mobile-app-link">
+            <a href="${item.url}" target="_blank" rel="noopener">
+              ${t.openInApp}
+            </a>
+          </div>
         </article>
       `;
     })
