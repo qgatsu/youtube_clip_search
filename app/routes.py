@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Dict, List
 
-from flask import Blueprint, Flask, current_app, jsonify, render_template, request, send_from_directory
+from flask import Blueprint, Flask, current_app, jsonify, render_template, request
 
 
 from .services.youtube_api import YoutubeClipFinder, parse_iso_datetime
@@ -39,11 +39,7 @@ def register_routes(app: Flask) -> None:
     # ---- sitemap.xml ----
     @bp.get("/sitemap.xml")
     def sitemap():
-        return send_from_directory(
-            current_app.static_folder,
-            "sitemap.xml",
-            mimetype="application/xml",
-        )
+        return current_app.send_static_file("sitemap.xml")
 
     # ---- English pages ----
     @bp.get("/en/")
