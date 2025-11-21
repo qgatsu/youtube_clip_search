@@ -9,5 +9,5 @@ services:
     env_file:
       - ../../config/lightsail.env
     ports:
-      - "5001:5000"
+      - "127.0.0.1:5000:5000"   
     restart: unless-stopped
