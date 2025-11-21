@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClipTube</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="landing">
+    <header class="site-header">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ClipTube ロゴ" />
+        <span>ClipTube   -YouTube 切り抜き検索-</span>
+      </div>
+      <nav class="site-nav">
+        <a href="#hero">トップ</a>
+        <a href="#results-panel">検索結果</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-content">
+          <p class="lead">
+            配信アーカイブのリンクから切り抜き動画を検索し、再生数順・投稿日順などで素早く確認できます。
+          </p>
+          <section class="panel">
+            <form id="search-form">
+              <label for="archive-url">配信アーカイブ URL</label>
+              <div class="input-row">
+                <input type="url" id="archive-url" name="url" placeholder="https://www.youtube.com/watch?v=..." required />
+                <button type="submit" class="button-primary">検索</button>
+              </div>
+            </form>
+            <aside class="origin-preview" id="origin-preview" aria-live="polite">
+              <p class="placeholder-text">検索すると元動画の情報が表示されます。</p>
+            </aside>
+          </section>
+        </div>
+      </section>
+
+      <section class="results-wrapper" id="results-panel">
+        <div class="results-panel">
+          <div class="results-controls">
+            <div class="sort-row">
+              <label for="sort-select">並び替え</label>
+              <select id="sort-select" name="sort">
+                <option value="views">再生数</option>
+                <option value="date">投稿日</option>
+                <option value="duration">動画の長さ</option>
+              </select>
+              <button type="button" id="order-toggle" data-order="desc" class="chip">降順</button>
+            </div>
+          </div>
+          <div class="result-tabs" id="result-tabs">
+            <button type="button" class="tab active" data-tab="videos">動画</button>
+            <button type="button" class="tab" data-tab="shorts">Shorts</button>
+            <button type="button" class="tab" data-tab="favorites" aria-label="お気に入り">
+              ♡ お気に入り
+            </button>
+          </div>
+          <div class="result-status" id="result-status" aria-live="polite"></div>
+          <section class="results" id="results"></section>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </body>
+</html>

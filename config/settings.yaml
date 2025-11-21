@@ -1,0 +1,5 @@
+youtube:
+  api_key: null
+
+search:
+  max_results: 50

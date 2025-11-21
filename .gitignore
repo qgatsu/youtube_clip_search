@@ -1,0 +1,5 @@
+.env
+config/lightsail.env
+.venv/
+__pycache__/
+*.pyc

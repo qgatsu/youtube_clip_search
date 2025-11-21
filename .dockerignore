@@ -1,0 +1,11 @@
+.git
+.gitignore
+.venv
+.env
+config/lightsail.env
+sample
+samples
+sample/
+tests
+__pycache__
+*.pyc
