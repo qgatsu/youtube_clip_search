@@ -134,17 +134,25 @@ def extract_video_id(value: str) -> Optional[str]:
         return value
 
     parsed = urlparse(value)
-    if parsed.netloc in {"youtu.be", "www.youtu.be"}:
-        vid = parsed.path.lstrip("/")
+    host = parsed.netloc.lower()
+    path = parsed.path
+
+    if host in {"youtu.be", "www.youtu.be"}:
+        vid = path.lstrip("/").split("/", 1)[0]
         return vid or None
 
-    if "youtube.com" in parsed.netloc:
+    if host.endswith("youtube.com"):
         qs = parse_qs(parsed.query)
         if "v" in qs:
             return qs["v"][0]
-        match = re.match(r"^/embed/([0-9A-Za-z_-]{6,})", parsed.path)
+        match = re.match(r"^/(?:embed|shorts|live)/([0-9A-Za-z_-]{6,})", path)
         if match:
             return match.group(1)
+        if path.startswith("/watch/"):
+            # Mobile app sometimes shares /watch/<id>
+            candidate = path.split("/")[2] if len(path.split("/")) > 2 else ""
+            if re.fullmatch(r"[0-9A-Za-z_-]{6,}", candidate):
+                return candidate
     return None
 
 
